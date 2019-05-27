@@ -12,12 +12,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  *
- * @author Hector Pose Carames
+ * @author sergio lorenzo rodguz
  */
-public class BD {
+public class Metodos {
    public static void createNewDatabase(String fileName) {
  
-        String url = "jdbc:sqlite:/home/menuven/Documentos/sqlite/" + fileName;
+        String url = "jdbc:sqlite:C:\\Users\\Doctor Mantequilla\\Documents\\NetBeansProjects\\PROGRAMACIÖN\\PruebaBD/testeo.db" + fileName;
  
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
@@ -34,23 +34,23 @@ public class BD {
 
     public static void createNewTable() {
         // url = ruta de la base de datos
-        String url = "jdbc:sqlite:/home/menuven/Documentos/sqlite/tests.db";
+        String url = "jdbc:sqlite:C:\\Users\\Doctor Mantequilla\\Documents\\NetBeansProjects\\PROGRAMACIÖN\\PruebaBD/testeo.db";
         
-        // SQL statement for creating a new table
-        String sql = "CREATE TABLE IF NOT EXISTS empresa (\n"
+         //SQL statement for creating a new table
+        String sql2 = "CREATE TABLE IF NOT EXISTS FCT (\n"
                 + "	cif PRIMARY KEY,\n"
                 + "	nome text NOT NULL, \n"
                 + "     telefono text \n"              
                 + " );";
         
         
-        String sql2 = "CREATE TABLE IF NOT EXISTS cliente (\n"
+        String sql = "CREATE TABLE IF NOT EXISTS alumno (\n"
                 + "	id integer PRIMARY KEY,\n"
                 + "	nome text NOT NULL,\n"
                 + "	apellido text NOT NULL, \n"
                 + "     ciudad text NOT NULL, \n"
                 + "     cif text, \n"
-                + "     FOREIGN KEY(cif) REFERENCES empresa(cif) \n"
+                + "     FOREIGN KEY(cif) REFERENCES FCT (cif) \n"
                 + " );";
         
         try (Connection conn = DriverManager.getConnection(url);
@@ -65,10 +65,11 @@ public class BD {
    
     Connection connect() {
         // url = ruta de nuestra base de datos
-        String url = "jdbc:sqlite:/home/menuven/Documentos/sqlite/tests.db";
+        String url = "jdbc:sqlite:C:\\Users\\Doctor Mantequilla\\Documents\\NetBeansProjects\\PROGRAMACIÖN\\PruebaBD/testeo.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
+            System.out.println("Conexión establecida.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -78,7 +79,7 @@ public class BD {
     
     
     public void selectAll(){
-        String sql = "SELECT id, nome, apellido, ciudad, cif FROM cliente";
+        String sql = "SELECT id, nome, apellido, ciudad, cif FROM alumno";
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -100,7 +101,7 @@ public class BD {
        
         // insert para añadir clientes a nuestra base de datos
         // el id se genera autómaticamente
-        String sql = "INSERT INTO cliente(nome,apellido,ciudad,cif) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO alumno (nome,apellido,ciudad,cif) VALUES(?,?,?,?)";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -121,7 +122,7 @@ public class BD {
        
         // insert para añadir clientes a nuestra base de datos
         // el id se genera autómaticamente
-        String sql = "INSERT INTO empresa(cif,nome,telefono) VALUES(?,?,?)";
+        String sql = "INSERT INTO FCT(cif,nome,telefono) VALUES(?,?,?)";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -136,7 +137,7 @@ public class BD {
         }
     }
     public void update(int id, String nome, String apellido, String ciudad) {
-        String sql = "UPDATE cliente SET nome = ? , "
+        String sql = "UPDATE alumno SET nome = ? , "
                 + "apellido = ? , "
                 + "ciudad = ? "                
                 + "WHERE id = ?";
@@ -157,7 +158,7 @@ public class BD {
     }
     
     public void update2(String cif, String nome, String telefono) {
-        String sql = "UPDATE empresa SET nome = ? , "               
+        String sql = "UPDATE FCT SET nome = ? , "               
                 + "telefono = ? "                
                 + "WHERE cif = ?";
  
@@ -176,7 +177,7 @@ public class BD {
     }
     
     public void delete(int id) {
-        String sql = "DELETE FROM cliente WHERE id = ?";
+        String sql = "DELETE FROM alumno WHERE id = ?";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -191,7 +192,7 @@ public class BD {
         }
     }
     public void delete2(String cif) {
-        String sql = "DELETE FROM empresa WHERE cif = ?";
+        String sql = "DELETE FROM FCT WHERE cif = ?";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -206,7 +207,7 @@ public class BD {
         }
     }
     public String getCif(String id){
-        String sql = "SELECT cif FROM cliente where id ="+id;
+        String sql = "SELECT cif FROM alumno where id ="+id;
         String dato = "";
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -215,7 +216,7 @@ public class BD {
             dato = rs.getString("cif");
             
         } catch (SQLException ex) {
-           Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
        }
      
        return dato;
@@ -224,7 +225,7 @@ public class BD {
     public int getId(){
         //como el id se genera automáticamente tenemos que recuperarlo 
         //para introducirlo en la tabla
-        String sql = "SELECT max(id) from cliente";
+        String sql = "SELECT max(id) from alumno";
         int rowID = 0;
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -232,7 +233,7 @@ public class BD {
              rowID = rs.getInt("max(id)");
             
         } catch (SQLException ex) {
-           Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
        }
      
        return rowID;
@@ -240,7 +241,7 @@ public class BD {
     
     public ArrayList<Object[]> tablas(){
        ArrayList<Object[]> tablas  = new ArrayList<>();
-       String sql = "SELECT id, nome, apellido, ciudad, cif FROM cliente";
+       String sql = "SELECT id, nome, apellido, ciudad, cif FROM alumno";
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -257,14 +258,14 @@ public class BD {
         }        
    
     }  catch (SQLException ex) {
-           Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
        }
      
         return tablas;
         }
     public ArrayList<Object[]> tablaE(){
        ArrayList<Object[]> tablaE  = new ArrayList<>();
-       String sql = "SELECT cif, nome, telefono FROM empresa";
+       String sql = "SELECT cif, nome, telefono FROM FCT";
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -279,7 +280,7 @@ public class BD {
         }        
    
     }  catch (SQLException ex) {
-           Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
        }
      
         return tablaE;
