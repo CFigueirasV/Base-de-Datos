@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class Metodos {
    public static void createNewDatabase(String fileName) {
  
-        String url = "jdbc:sqlite:C:\\Users\\Doctor Mantequilla\\Documents\\NetBeansProjects\\PROGRAMACIÖN\\PruebaBD/testeo.db" + fileName;
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/slorenzorodriguez/NetBeansProjects/BaseDatosSQLIT/testeo.db" + fileName;
  
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
@@ -34,11 +34,11 @@ public class Metodos {
 
     public static void createNewTable() {
         // url = ruta de la base de datos
-        String url = "jdbc:sqlite:C:\\Users\\Doctor Mantequilla\\Documents\\NetBeansProjects\\PROGRAMACIÖN\\PruebaBD/testeo.db";
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/slorenzorodriguez/NetBeansProjects/BaseDatosSQLIT/testeo.db";
         
          //SQL statement for creating a new table
         String sql2 = "CREATE TABLE IF NOT EXISTS FCT (\n"
-                + "	cif PRIMARY KEY,\n"
+                + "	dni PRIMARY KEY,\n"
                 + "	nome text NOT NULL, \n"
                 + "     telefono text \n"              
                 + " );";
@@ -49,8 +49,8 @@ public class Metodos {
                 + "	nome text NOT NULL,\n"
                 + "	apellido text NOT NULL, \n"
                 + "     ciudad text NOT NULL, \n"
-                + "     cif text, \n"
-                + "     FOREIGN KEY(cif) REFERENCES FCT (cif) \n"
+                + "     dni text, \n"
+                + "     FOREIGN KEY(dni) REFERENCES FCT (dni) \n"
                 + " );";
         
         try (Connection conn = DriverManager.getConnection(url);
@@ -65,7 +65,7 @@ public class Metodos {
    
     Connection connect() {
         // url = ruta de nuestra base de datos
-        String url = "jdbc:sqlite:C:\\Users\\Doctor Mantequilla\\Documents\\NetBeansProjects\\PROGRAMACIÖN\\PruebaBD/testeo.db";
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/slorenzorodriguez/NetBeansProjects/BaseDatosSQLIT/testeo.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -79,7 +79,7 @@ public class Metodos {
     
     
     public void selectAll(){
-        String sql = "SELECT id, nome, apellido, ciudad, cif FROM alumno";
+        String sql = "SELECT id, nome, apellido, ciudad, dni FROM alumno";
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -91,24 +91,24 @@ public class Metodos {
                                    rs.getString("nome") + "\t" +
                                    rs.getString("apellido") + "\t"+
                                    rs.getString("ciudad") + "\t"+
-                                   rs.getString("cif"));
+                                   rs.getString("dni"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    public void insert(String nome, String apellido, String ciudad, String cif) {
+    public void insert(String nome, String apellido, String ciudad, String dni) {
        
         // insert para añadir clientes a nuestra base de datos
         // el id se genera autómaticamente
-        String sql = "INSERT INTO alumno (nome,apellido,ciudad,cif) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO alumno (nome,apellido,ciudad,dni) VALUES(?,?,?,?)";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.setString(1, nome);
             pstmt.setString(2, apellido);
             pstmt.setString(3, ciudad);
-            pstmt.setString(4, cif);
+            pstmt.setString(4, dni);
             pstmt.executeUpdate();
             
             
@@ -118,15 +118,15 @@ public class Metodos {
         
         
     }
-    public void insert2(String cif, String nome, String telefono) {
+    public void insert2(String dni, String nome, String telefono) {
        
         // insert para añadir clientes a nuestra base de datos
         // el id se genera autómaticamente
-        String sql = "INSERT INTO FCT(cif,nome,telefono) VALUES(?,?,?)";
+        String sql = "INSERT INTO FCT(dni,nome,telefono) VALUES(?,?,?)";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)){
-            pstmt.setString(1, cif);
+            pstmt.setString(1, dni);
             pstmt.setString(2, nome);
             pstmt.setString(3, telefono);
             pstmt.executeUpdate();
@@ -157,10 +157,10 @@ public class Metodos {
         }
     }
     
-    public void update2(String cif, String nome, String telefono) {
+    public void update2(String dni, String nome, String telefono) {
         String sql = "UPDATE FCT SET nome = ? , "               
                 + "telefono = ? "                
-                + "WHERE cif = ?";
+                + "WHERE dni = ?";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -168,7 +168,7 @@ public class Metodos {
             // set the corresponding param
             pstmt.setString(1, nome);
             pstmt.setString(2, telefono);
-            pstmt.setString(3, cif);
+            pstmt.setString(3, dni);
             // update 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -191,14 +191,14 @@ public class Metodos {
             System.out.println(e.getMessage());
         }
     }
-    public void delete2(String cif) {
-        String sql = "DELETE FROM FCT WHERE cif = ?";
+    public void delete2(String dni) {
+        String sql = "DELETE FROM FCT WHERE dni = ?";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
  
             // set the corresponding param
-            pstmt.setString(1, cif);
+            pstmt.setString(1, dni);
             // execute the delete statement
             pstmt.executeUpdate();
  
@@ -207,13 +207,13 @@ public class Metodos {
         }
     }
     public String getCif(String id){
-        String sql = "SELECT cif FROM alumno where id ="+id;
+        String sql = "SELECT dni FROM alumno where id ="+id;
         String dato = "";
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
             
-            dato = rs.getString("cif");
+            dato = rs.getString("dni");
             
         } catch (SQLException ex) {
            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
@@ -241,7 +241,7 @@ public class Metodos {
     
     public ArrayList<Object[]> tablas(){
        ArrayList<Object[]> tablas  = new ArrayList<>();
-       String sql = "SELECT id, nome, apellido, ciudad, cif FROM alumno";
+       String sql = "SELECT id, nome, apellido, ciudad, dni FROM alumno";
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -252,7 +252,7 @@ public class Metodos {
                 datos[1] = rs.getString("nome");
                 datos[2] = rs.getString("apellido");
                 datos[3] = rs.getString("ciudad");
-                datos[4] = rs.getString("cif");
+                datos[4] = rs.getString("dni");
                 
                 tablas.add(datos);
         }        
@@ -265,14 +265,14 @@ public class Metodos {
         }
     public ArrayList<Object[]> tablaE(){
        ArrayList<Object[]> tablaE  = new ArrayList<>();
-       String sql = "SELECT cif, nome, telefono FROM FCT";
+       String sql = "SELECT dni, nome, telefono FROM FCT";
         
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
         while (rs.next()) {
                 Object[] datos = new Object[3];               
-                datos[0] = rs.getString("cif");
+                datos[0] = rs.getString("dni");
                 datos[1] = rs.getString("nome");
                 datos[2] = rs.getString("telefono");
                 

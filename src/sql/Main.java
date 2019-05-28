@@ -18,7 +18,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        createNewDatabase("");
+        createNewDatabase("testeo.db");
         AlumnoBD alumno = new AlumnoBD();
         alumno.setVisible(true);
         
@@ -26,8 +26,8 @@ public class Main {
         
         createNewTable();
         Metodos bd = new Metodos();
-        bd.insert("xxxx", "xxxxx","xxxxx","xxxx");
-        //bd.insert("xxxxk", "xxxxd");
+        //bd.insert("xxxx", "xxxxx","xxxxx","xxxx");
+        //bd.insert("xxxx", "xxxxd");
         //bd.selectAll();
         //bd.getId();
        
