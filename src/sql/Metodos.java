@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  *
- * @author sergio lorenzo rodguz
+ * @author carlos figueiras
  */
 public class Metodos {
    public static void createNewDatabase(String fileName) {

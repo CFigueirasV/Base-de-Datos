@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sql;
 
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author sergio lorenzo rodguz
+ * @author carlos figueiras
  */
 public class TablaEliminate extends javax.swing.JFrame {
     Metodos bd = new Metodos();
@@ -185,7 +180,7 @@ public class TablaEliminate extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBorrar)
                     .addComponent(btnSalir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
