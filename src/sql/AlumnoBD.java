@@ -357,13 +357,7 @@ public class AlumnoBD extends javax.swing.JFrame {
            ta.addRow(datos);
            
        }
-           
-       
-        
-        
-        
-          
-        
+  
         
     }//GEN-LAST:event_boton4ActionPerformed
 
@@ -377,7 +371,7 @@ public class AlumnoBD extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void boton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton6ActionPerformed
-        FCTdb nueva = new FCTdb();
+        Broncanodb nueva = new Broncanodb();
         nueva.setVisible(true);
     }//GEN-LAST:event_boton6ActionPerformed
 

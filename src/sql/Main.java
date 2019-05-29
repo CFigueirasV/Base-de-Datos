@@ -13,7 +13,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        createNewDatabase("testeo.db");
+        createNewDatabase("oumama.db");
         AlumnoBD alumno = new AlumnoBD();
         alumno.setVisible(true);
         

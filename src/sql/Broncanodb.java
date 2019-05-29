@@ -7,10 +7,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author carlos figueiras
  */
-public class FCTdb extends javax.swing.JFrame {
+public class Broncanodb extends javax.swing.JFrame {
     Metodos bd = new Metodos();
 
-    public FCTdb() {
+    public Broncanodb() {
         initComponents();
     }
 
@@ -72,7 +72,7 @@ public class FCTdb extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -163,7 +163,7 @@ public class FCTdb extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FCTdb().setVisible(true);
+                new Broncanodb().setVisible(true);
             }
         });
     }
