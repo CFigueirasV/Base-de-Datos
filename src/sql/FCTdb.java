@@ -9,9 +9,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FCTdb extends javax.swing.JFrame {
     Metodos bd = new Metodos();
-    /**
-     * Creates new form Empresa
-     */
+
     public FCTdb() {
         initComponents();
     }

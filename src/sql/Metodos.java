@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class Metodos {
    public static void createNewDatabase(String fileName) {
  
-        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/slorenzorodriguez/NetBeansProjects/BaseDatosSQLIT/testeo.db" + fileName;
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/cfigueirasvalverde/Documentos/Programacion/3ª ev/BD/PROG_DATABASE" + fileName;
  
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
@@ -34,7 +34,7 @@ public class Metodos {
 
     public static void createNewTable() {
         // url = ruta de la base de datos
-        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/slorenzorodriguez/NetBeansProjects/BaseDatosSQLIT/testeo.db";
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/cfigueirasvalverde/Documentos/Programacion/3ª ev/BD/PROG_DATABASE";
         
          //SQL statement for creating a new table
         String sql2 = "CREATE TABLE IF NOT EXISTS FCT (\n"
@@ -65,7 +65,7 @@ public class Metodos {
    
     Connection connect() {
         // url = ruta de nuestra base de datos
-        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/slorenzorodriguez/NetBeansProjects/BaseDatosSQLIT/testeo.db";
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/cfigueirasvalverde/Documentos/Programacion/3ª ev/BD/PROG_DATABASE";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);

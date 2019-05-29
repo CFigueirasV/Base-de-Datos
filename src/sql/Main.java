@@ -21,13 +21,8 @@ public class Main {
         
         createNewTable();
         Metodos bd = new Metodos();
-        //bd.insert("xxxx", "xxxxx","xxxxx","xxxx");
-        //bd.insert("xxxx", "xxxxd");
-        //bd.selectAll();
-        //bd.getId();
        
         
-        
-    }
+        }
     
 }
