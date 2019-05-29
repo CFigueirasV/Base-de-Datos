@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class Metodos {
    public static void createNewDatabase(String fileName) {
  
-        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/cfigueirasvalverde/Documentos/Programacion/3ª ev/BD/PROG_DATABASE" + fileName;
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/cfigueirasvalverde/Documentos/Programacion/3ª ev/BD/PROG_DATABASE/text.db" + fileName;
  
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
@@ -34,7 +34,7 @@ public class Metodos {
 
     public static void createNewTable() {
         // url = ruta de la base de datos
-        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/cfigueirasvalverde/Documentos/Programacion/3ª ev/BD/PROG_DATABASE";
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/cfigueirasvalverde/Documentos/Programacion/3ª ev/BD/PROG_DATABASE/text.db";
         
          //SQL statement for creating a new table
         String sql2 = "CREATE TABLE IF NOT EXISTS FCT (\n"
@@ -65,7 +65,7 @@ public class Metodos {
    
     Connection connect() {
         // url = ruta de nuestra base de datos
-        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/cfigueirasvalverde/Documentos/Programacion/3ª ev/BD/PROG_DATABASE";
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/cfigueirasvalverde/Documentos/Programacion/3ª ev/BD/PROG_DATABASE/text.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -125,7 +125,7 @@ public class Metodos {
         String sql = "INSERT INTO FCT(dni,nome,telefono) VALUES(?,?,?)";
  
         try (Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)){
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.setString(1, dni);
             pstmt.setString(2, nome);
             pstmt.setString(3, telefono);
