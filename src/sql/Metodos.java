@@ -36,12 +36,6 @@ public class Metodos {
         // url = ruta de la base de datos
         String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/cfigueirasvalverde/Documentos/Programacion/3ª ev/BD/PROG_DATABASE/text.db";
         
-         //SQL statement for creating a new table
-        String sql2 = "CREATE TABLE IF NOT EXISTS FCT (\n"
-                + "	dni PRIMARY KEY,\n"
-                + "	nome text NOT NULL, \n"
-                + "     telefono text \n"              
-                + " );";
         
         
         String sql = "CREATE TABLE IF NOT EXISTS alumno (\n"
@@ -57,7 +51,6 @@ public class Metodos {
                 Statement stmt = conn.createStatement()) {
             // creamos la tabla cargando nuestra sentencia en la variable sql
             stmt.execute(sql);
-            stmt.execute(sql2);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -99,7 +92,7 @@ public class Metodos {
     }
     public void insert(String nome, String apellido, String ciudad, String dni) {
        
-        // insert para añadir clientes a nuestra base de datos
+        // insert para añadir clientes a la base de datos de la ferreteria
         // el id se genera autómaticamente
         String sql = "INSERT INTO alumno (nome,apellido,ciudad,dni) VALUES(?,?,?,?)";
  
@@ -120,7 +113,7 @@ public class Metodos {
     }
     public void insert2(String dni, String nome, String telefono) {
        
-        // insert para añadir clientes a nuestra base de datos
+        // insert para añadir clientes a la base de datos de la ferreteria
         // el id se genera autómaticamente
         String sql = "INSERT INTO FCT(dni,nome,telefono) VALUES(?,?,?)";
  
@@ -285,4 +278,5 @@ public class Metodos {
      
         return tablaE;
         }
+
 }
